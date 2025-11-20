@@ -42,17 +42,45 @@ const connectDB = async () => {
 // Connect to database
 connectDB();
 
-// API Routes
-app.use('/api/contact', contactRoutes);
-app.use('/api/services', servicesRoutes);
-app.use('/api/testimonials', testimonialsRoutes);
+// API v1 Routes
+app.use('/api/v1/contact', contactRoutes);
+app.use('/api/v1/services', servicesRoutes);
+app.use('/api/v1/testimonials', testimonialsRoutes);
 
 // Health check endpoint
+app.get('/api/v1/health', (req, res) => {
+    res.status(200).json({
+        status: 'OK',
+        message: 'ClinicKart API is running',
+        timestamp: new Date().toISOString(),
+        uptime: process.uptime(),
+        service: 'ClinicKart Backend'
+    });
+});
+
+// API v1 info endpoint
+app.get('/api/v1', (req, res) => {
+    res.json({
+        success: true,
+        message: 'ClinicKart Backend API v1',
+        version: process.env.API_VERSION || 'v1',
+        endpoints: {
+            health: '/api/v1/health',
+            contact: '/api/v1/contact',
+            services: '/api/v1/services',
+            testimonials: '/api/v1/testimonials'
+        }
+    });
+});
+
+// Legacy health endpoint for compatibility
 app.get('/api/health', (req, res) => {
     res.status(200).json({
-        status: 'success',
+        status: 'OK',
         message: 'ClinicKart API is running',
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
+        uptime: process.uptime(),
+        service: 'ClinicKart Backend'
     });
 });
 
@@ -62,10 +90,11 @@ app.get('/', (req, res) => {
         message: 'Welcome to ClinicKart API',
         version: process.env.API_VERSION || 'v1',
         endpoints: {
-            contact: '/api/contact',
-            services: '/api/services',
-            testimonials: '/api/testimonials',
-            health: '/api/health'
+            'api-v1': '/api/v1',
+            health: '/api/v1/health',
+            contact: '/api/v1/contact',
+            services: '/api/v1/services',
+            testimonials: '/api/v1/testimonials'
         }
     });
 });
@@ -73,8 +102,16 @@ app.get('/', (req, res) => {
 // 404 Error Handler
 app.use((req, res) => {
     res.status(404).json({
-        status: 'error',
-        message: 'Route not found'
+        success: false,
+        error: 'Route not found',
+        message: `Cannot ${req.method} ${req.path}`,
+        availableEndpoints: {
+            'api-v1': '/api/v1',
+            health: '/api/v1/health',
+            contact: '/api/v1/contact',
+            services: '/api/v1/services',
+            testimonials: '/api/v1/testimonials'
+        }
     });
 });
 

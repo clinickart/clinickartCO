@@ -6,6 +6,11 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
+    "production": "NODE_ENV=production node server.js",
+    "pm2:start": "pm2 start server.js --name clinickart-backend",
+    "pm2:stop": "pm2 stop clinickart-backend",
+    "pm2:restart": "pm2 restart clinickart-backend",
+    "pm2:delete": "pm2 delete clinickart-backend",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
