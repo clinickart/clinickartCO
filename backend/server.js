@@ -21,12 +21,23 @@ const app = express();
 app.use(helmet()); // Security headers
 app.use(compression()); // Compress responses
 app.use(morgan('dev')); // HTTP request logger
-app.use(cors({
-    origin: process.env.CLIENT_URL || 'http://localhost:3000',
-    credentials: true
-}));
-app.use(express.json()); // Parse JSON bodies
-app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
+
+// CORS Configuration for production
+const corsOptions = {
+    origin: [
+        'http://localhost:3000',
+        'https://clinickart.co',
+        'https://www.clinickart.co',
+        process.env.CLIENT_URL
+    ].filter(Boolean),
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+};
+
+app.use(cors(corsOptions));
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // MongoDB Connection
 const connectDB = async () => {
@@ -38,6 +49,11 @@ const connectDB = async () => {
         process.exit(1);
     }
 };
+
+// MongoDB error handling
+mongoose.connection.on('error', err => {
+    console.error('❌ MongoDB error:', err.message);
+});
 
 // Connect to database
 connectDB();
@@ -117,18 +133,29 @@ app.use((req, res) => {
 
 // Global Error Handler
 app.use((err, req, res, next) => {
-    console.error(err.stack);
+    console.error('❌ Error:', err.message);
     res.status(err.status || 500).json({
-        status: 'error',
-        message: err.message || 'Internal Server Error'
+        success: false,
+        message: err.message || 'Internal Server Error',
+        ...(process.env.NODE_ENV === 'development' && { stack: err.stack })
     });
 });
 
 // Start server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-    console.log(`🚀 Server running on port ${PORT}`);
-    console.log(`🌐 Environment: ${process.env.NODE_ENV || 'development'}`);
+const server = app.listen(PORT, () => {
+    console.log(`🚀 ClinicKart Backend running on port ${PORT}`);
+    console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
+});
+
+// Graceful shutdown
+process.on('SIGTERM', () => {
+    console.log('🛑 Shutting down gracefully...');
+    server.close(() => {
+        mongoose.connection.close(false, () => {
+            process.exit(0);
+        });
+    });
 });
 
 module.exports = app;

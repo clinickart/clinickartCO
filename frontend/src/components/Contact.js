@@ -210,8 +210,7 @@ const Contact = () => {
             value={formData.phone}
             onChange={handleChange}
             placeholder="Phone Number"
-            pattern="[0-9+\\-() ]+"
-            required
+            pattern="[0-9+\-() ]+"
         />
     </div>
 
