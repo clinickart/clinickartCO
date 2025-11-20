@@ -1,0 +1,142 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-white);
+    box-shadow: 0 2px 12px var(--color-shadow);
+    z-index: 1000;
+    transition: var(--transition);
+   
+}
+
+.header.scrolled {
+    box-shadow: 0 4px 20px var(--color-shadow-hover);
+}
+
+.nav {
+    height: var(--header-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 4rem;
+   
+ }
+
+ 
+
+/* Add this to your Header.css file */
+
+.nav__logo a {
+    display: flex; /* Helps with vertical alignment */
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px; /* Space between logo image and text */
+   
+   
+}
+
+.logo-image {
+    height: 80px; /* <-- ADJUST THIS VALUE to get your desired logo size */
+    width: auto;  /* This maintains the correct aspect ratio of the image */
+}
+
+
+
+.nav__logo h2 {
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--color-black);
+    cursor: pointer;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+
+
+.nav__list {
+    list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px; /* spacing between nav items */
+}
+
+.nav__link {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--color-black);
+    padding: 8px 16px;
+    border-radius: var(--border-radius);
+    position: relative;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.nav__link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: #ec971f;
+    transition: var(--transition);
+}
+
+.nav__link:hover::after,
+.nav__link.active::after {
+    width: 70%;
+}
+
+.nav__link:hover,
+.nav__link.active {
+    color: #ec971f;
+}
+
+.nav__toggle,
+.nav__close {
+    display: none;
+    cursor: pointer;
+    color: var(--color-black);
+}
+
+@media screen and (max-width: 768px) {
+    .nav__menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100vh;
+        background-color: var(--color-white);
+        padding: 100px 40px 40px;
+        box-shadow: -2px 0 12px var(--color-shadow);
+        transition: var(--transition);
+    }
+    
+    .nav__menu.show-menu {
+        right: 0;
+    }
+    
+    .nav__list {
+        flex-direction: column;
+        gap: 30px;
+        align-items: flex-start;
+    }
+    
+    .nav__link {
+        font-size: 18px;
+    }
+    
+    .nav__toggle,
+    .nav__close {
+        display: block;
+    }
+    
+    .nav__close {
+        position: absolute;
+        top: 24px;
+        right: 24px;
+        font-size: 28px;
+    }
+}

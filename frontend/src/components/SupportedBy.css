@@ -1,0 +1,63 @@
+.supported-by {
+    padding: 3rem 0; /* Top/bottom spacing */
+    background: #ffffff; /* White background */
+    text-align: center; /* Center heading */
+}
+
+.supported-by__heading {
+    font-size: 2rem; /* Larger heading */
+    font-weight: bold;
+    color: #1a1a1a; /* Dark color for white background */
+    margin-bottom: 2rem; /* Space below heading */
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.supported-by__item {
+    display: flex;
+    justify-content: center; /* Center each logo */
+    align-items: center;
+    padding: 0 2rem; /* Increased horizontal spacing to prevent overlap and give breathing room */
+}
+
+/* BIGGG, equal size images */
+.supported-by__logo {
+    height: 150px; /* BIGGG size – adjust if needed (e.g., 200px for even bigger) */
+    width: auto; /* Auto width to maintain aspect ratio */
+    max-width: 250px; /* Limit max width for equal length and no overflow */
+    object-fit: contain; /* Ensure no distortion, keeps equal appearance */
+    transition: transform 0.3s ease; /* Hover effect */
+    background: transparent; /* Transparent background */
+    margin: 0 1.5rem; /* Add horizontal margin for consistent spacing */
+}
+
+.supported-by__logo:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+
+/* Slick carousel overrides for straight line, no overlap */
+.slick-track {
+    display: flex;
+    align-items: center; /* Vertically align logos in the row */
+}
+
+.slick-slide > div {
+    display: flex;
+    justify-content: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .supported-by__heading {
+        font-size: 1.2rem;
+    }
+
+    .supported-by__logo {
+        height: 100px; /* Slightly smaller on mobile but still readable */
+        max-width: 180px;
+    }
+
+    .supported-by__item {
+        padding: 0 1rem; /* Adjust spacing on mobile */
+    }
+}

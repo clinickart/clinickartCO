@@ -1,0 +1,432 @@
+/* About.css - Modernized Yellow Theme with Enhanced Cards */
+.about-page {
+    display: flex;
+    flex-direction: column; /* Stack section and footer vertically */
+    min-height: 100vh; /* Fill full viewport height */
+    position: relative; /* For overlay positioning */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+.about-page-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.85) 100%);
+    z-index: 2;
+}
+
+.about.section {
+    flex-grow: 1; /* Expand to fill available space, pushing footer to bottom */
+    position: relative;
+    z-index: 2;
+    padding: 8rem 0 0 0; /* Reduced bottom padding to 0 to close gap */
+}
+
+.about__container.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 3rem;
+}
+
+/* Section Header - Modern Yellow Theme */
+.section__header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.section__subtitle {
+    display: inline-block;
+    font-size: 0.875rem;
+    color: #FFD700;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.section__subtitle::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #FFD700, #FFA500);
+    border-radius: 2px;
+}
+
+.section__title {
+    font-size: 4rem;
+    color: #ffcb1f;
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.859);
+}
+
+.section__description {
+    font-size: 1.25rem;
+    color: #000000;
+    max-width: 700px;
+    margin: 0 auto;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+/* About Content */
+.about__content {
+    margin-bottom: 6rem;
+}
+
+.about__text {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.about__description {
+    font-size: 1.25rem;
+    line-height: 1.9;
+    color: #ffffff;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    font-weight: 400;
+    background: rgba(255, 215, 0, 0.05);
+    padding: 2.5rem;
+    border-radius: 15px;
+    border-left: 4px solid #FFD700;
+}
+
+/* Mission & Vision Section - Modern Glassmorphic Cards */
+.mission-vision__section {
+    margin: 8rem 0;
+}
+
+.mission-vision__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+}
+
+.mission-vision__card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 3.5rem 2.5rem;
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(255, 215, 0, 0.15);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.mission-vision__card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, #FFD700, #FFA500, #FF8C00);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.mission-vision__card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.mission-vision__card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 20px 60px rgba(255, 215, 0, 0.35);
+    border-color: rgba(255, 215, 0, 0.4);
+}
+
+.mission-vision__card:hover::before {
+    opacity: 1;
+}
+
+.mission-vision__card:hover::after {
+    opacity: 1;
+}
+
+.mission-vision__card h3 {
+    font-size: 1.85rem;
+    color: #1a1a1a;
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.mission-vision__card p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: #4a4a4a;
+    margin: 0;
+    font-weight: 400;
+    position: relative;
+    z-index: 1;
+}
+
+/* Services Section - Enhanced Gradient Cards */
+.services__section {
+    margin: 8rem 0;
+}
+
+.services__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.service__card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 4rem 3rem;
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(255, 215, 0, 0.15);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.service__card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.03) 0%, rgba(255, 165, 0, 0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+}
+
+.service__card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 24px 70px rgba(255, 215, 0, 0.35);
+    border-color: rgba(255, 215, 0, 0.4);
+}
+
+.service__card:hover::before {
+    opacity: 1;
+}
+
+.service__card h3 {
+    font-size: 2.125rem;
+    color: #1a1a1a;
+    margin-bottom: 2.5rem;
+    font-weight: 800;
+    text-align: center;
+    position: relative;
+    padding-bottom: 1.5rem;
+    z-index: 1;
+    background: linear-gradient(135deg, #FFA500 0%, #FFD700 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.service__card h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, #FFD700, #FFA500, #FF8C00);
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(255, 215, 0, 0.4);
+}
+
+.service__features {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.service__features p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: #4a4a4a;
+    margin: 0;
+    font-weight: 500;
+    padding-left: 2rem;
+    position: relative;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.service__features p::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #FFD700;
+    font-weight: bold;
+    font-size: 1.3rem;
+    transition: transform 0.3s ease;
+}
+
+.service__features p:hover {
+    transform: translateX(5px);
+    color: #2a2a2a;
+}
+
+.service__features p:hover::before {
+    transform: scale(1.2);
+}
+
+/* Team Section - Updated for Centered 4+2 Grid Layout */
+.team__section {
+    margin: 8rem -3rem 0 -3rem; /* REDUCED bottom margin to 0 to close gap */
+    padding: 6rem 3rem;
+    background: linear-gradient(180deg, #FFF9E6 0%, #FFFAF0 50%, #FFF9E6 100%);
+    position: relative;
+}
+
+.team_section .section_header {
+    margin-bottom: 5rem;
+}
+
+.team_section .section_title {
+    background: linear-gradient(135deg, #FFA500 0%, #FFD700 100%);
+   text-shadow: none;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.team_section .section_description {
+    color: #666;
+    font-weight: 500;
+}
+
+/* Updated Team Grid - Centered Layout with Consistent Sizing */
+.team__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem 2.5rem;
+    margin-bottom: 5rem;
+    max-width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Center the last 2 items (5th and 6th) */
+.team__member:nth-child(5) {
+    grid-column: 2;
+}
+
+.team__member:nth-child(6) {
+    grid-column: 3;
+}
+
+.team__member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.team__member:hover {
+    transform: translateY(-10px);
+}
+
+/* Consistent Avatar Sizing - Matching Uploaded Image */
+.member__avatar {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    background: #f0f0f0;
+    flex-shrink: 0;
+}
+
+.member__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.member__fallback {
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: white;
+    background: linear-gradient(135deg, #FFA500 0%, #FFD700 100%);
+}
+
+.team__member-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+/* Consistent Text Sizing */
+.team__member-name {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+    line-height: 1.3;
+}
+
+.team__member-role {
+    font-size: 0.95rem;
+    color: #666;
+    margin: 0;
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+/* Team Story - Enhanced Modern Card */
+.team__story {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 4.5rem 3.5rem;
+    border-radius: 24px;
+    box-shadow: 0 12px 48px rgba(255, 215, 0, 0.15);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+    margin-bottom: 0; /* REDUCED to 0 to close gap above footer */
+}

@@ -1,0 +1,145 @@
+.footer {
+    background-color: #ffffff; /* Light background for contrast */
+    padding: 2rem 1rem; /* Vertical padding */
+    color: #333; /* Default text color */
+    font-family: 'Arial', sans-serif; /* Adjust to match your site's font */
+}
+
+.footer__container {
+    display: flex; /* Single row layout */
+    flex-direction: row; /* Horizontal alignment */
+    justify-content: space-between; /* Space between left and right sides */
+
+    align-items: center; /* Vertically center items */
+    gap: 1rem; /* Space between left and right sections */
+    max-width: 1200px; /* Optional: Limit width for larger screens */
+    margin: 0 auto; /* Center the container */
+   
+}
+
+
+
+/* Left Side: Logo, Title, and Description (enhanced grouping) */
+.footer__left a{
+   display: flex; /* Helps with vertical alignment */
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px; /* Space between logo image and text */
+   
+}
+
+.footer__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000000; /* Orange from your previous code for branding */
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+
+.footer__description {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #666;
+    max-width: 300px; /* Limit width for better readability */
+
+}
+
+/* Middle: Social Media Icons (added as per request) */
+.footer__social {
+    display: flex;
+    flex-direction: row; /* Icons in a horizontal row */
+    gap: 1rem; /* Space between icons */
+    align-items: center; /* Vertically center */
+}
+
+.social__link {
+    color: #333; /* Default icon color */
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth hover effect */
+}
+
+.social__link svg {
+    width: 24px; /* Icon size */
+    height: 24px;
+}
+
+.social__link:hover {
+    color: #ec971f; /* Branding color on hover */
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+
+
+
+/* Right Side: Icons and Links in a row */
+.footer__right {
+    display: flex;
+    flex-direction: row; /* Keep icons and links in a single row */
+    align-items: center;
+    gap: 2rem; /* Space between icons and links sections */
+    flex: 2; /* Take more space for content */
+}
+
+.footer__icons {
+    display: flex;
+    flex-direction: row; /* Icons in a row */
+    gap: 1rem; /* Space between icons */
+}
+
+.footer__icon {
+    font-size: 1rem;
+    color: #333;
+    /* Add styles for icons (e.g., if using images or SVGs) */
+}
+
+.footer__links {
+    display: flex;
+    flex-direction: row; /* Links in a row */
+    list-style: none;
+    gap: 1.5rem; /* Space between links */
+    margin: 0;
+    padding: 0;
+}
+
+.footer__links li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.footer__links li a:hover {
+    color: #ffad00; /* Hover color matching branding */
+}
+
+/* Copyright */
+.footer__copyright {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #999;
+    margin-top: 1rem; /* Space above copyright */
+    border-top: 1px solid #ddd; /* Optional separator */
+    padding-top: 1rem;
+}
+
+/* Responsive: Stack to column on mobile for usability */
+@media (max-width: 768px) {
+    .footer__container {
+        flex-direction: column; /* Stack vertically on small screens */
+        align-items: flex-start; /* Align left */
+        gap: 1.5rem;
+    }
+
+    .footer__left {
+        max-width: 100%;
+    }
+
+    .footer__right {
+        flex-direction: column; /* Stack icons and links vertically on mobile */
+        align-items: flex-start;
+    }
+
+    .footer__icons,
+    .footer__links {
+        flex-direction: column; /* Stack items vertically on mobile */
+        gap: 0.5rem;
+    }
+}
