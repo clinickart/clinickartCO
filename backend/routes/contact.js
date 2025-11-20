@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { body, validationResult } = require('express-validator');
 const Contact = require('../models/Contact');
+const emailService = require('../services/emailService');
 
 // Validation middleware
 const validateContact = [
@@ -16,10 +17,9 @@ const validateContact = [
     body('phone')
         .optional()
         .trim(),
-    body('subject')
-        .trim()
-        .notEmpty().withMessage('Subject is required')
-        .isLength({ max: 200 }).withMessage('Subject cannot exceed 200 characters'),
+    body('reason')
+        .optional()
+        .trim(),
     body('message')
         .trim()
         .notEmpty().withMessage('Message is required')
@@ -40,18 +40,43 @@ router.post('/', validateContact, async (req, res) => {
             });
         }
 
-        const { name, email, phone, subject, message } = req.body;
+        const { name, email, phone, reason, message } = req.body;
 
         // Create new contact submission
         const contact = new Contact({
             name,
             email,
             phone,
-            subject,
+            reason,
             message
         });
 
         await contact.save();
+
+        // Send emails asynchronously
+        try {
+            // Send notification to admin
+            await emailService.sendAdminNotification({
+                name,
+                email,
+                phone,
+                reason,
+                message,
+                createdAt: contact.createdAt
+            });
+
+            // Send acknowledgment to customer
+            await emailService.sendCustomerAcknowledgment({
+                name,
+                email,
+                reason
+            });
+
+            console.log('✅ Both admin notification and customer acknowledgment emails sent successfully');
+        } catch (emailError) {
+            console.error('❌ Email sending failed:', emailError);
+            // Don't fail the API response if email fails, but log it
+        }
 
         res.status(201).json({
             status: 'success',

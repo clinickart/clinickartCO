@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Hero.module.css';
 
-const Hero = ({ 
+const Hero = ({
     imageSrc = '/assets/clinickhero.jpg',
     subtitle = (<>Welcome to <span style={{ color: '#FFD700' }}>Clinic</span><span style={{ color: '#FF0000' }}>Kart</span></>),
     title = 'Your Trusted <br /> Healthcare Solution <br /> Partner',
@@ -24,13 +24,13 @@ const Hero = ({
     };
 
     return (
-        <section 
-            className={styles.hero} 
+        <section
+            className={styles.hero}
             id="home"
-            style={{ 
+            style={{
                 backgroundImage: `url(${imageSrc})`,
                 backgroundSize: backgroundSize
-            }}  
+            }}
         >
             <div className={styles.overlay}></div>
             <div className={styles.container}>
@@ -50,24 +50,30 @@ const Hero = ({
                 </div>
 
                 {/* Right Column */}
+                {/* Right Column */}
                 <div className={styles.contentRight}>
                     <p className={styles.description}>
                         {description}
                     </p>
                     {showButtons && (
                         <div className={styles.buttons}>
-                            <button 
-                                onClick={() => window.location.href = 'https://user.clinickart.co'} 
+                            <a
+                                href="https://user.clinickart.co"
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className={styles.btnPrimary}
                             >
                                 Shop Now
-                            </button>
-                            <button 
-                                onClick={() => window.location.href = 'https://vendor.clinickart.co'} 
+                            </a>
+
+                            <a
+                                href="https://vendor.clinickart.co"
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className={styles.btnSecondary}
                             >
                                 Become a Vendor
-                            </button>
+                            </a>
                         </div>
                     )}
                 </div>

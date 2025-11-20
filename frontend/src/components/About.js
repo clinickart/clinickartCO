@@ -186,8 +186,8 @@ const About = () => {
         },
         { 
             name: 'Hemant Krishna', 
-            role: 'Full Stack Engineer', 
-            image: '/assets/hemantkrishna.jpg' 
+            role: 'Technical Consultant – Application Architecture & Cloud Solutions', 
+            image: '' 
         },
         { 
             name: 'Sharanya Bhat N', 

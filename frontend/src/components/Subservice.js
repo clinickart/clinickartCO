@@ -49,7 +49,7 @@ export default function Subservice() {
                 <p className={styles.cardDescription}>
                   Order dental & clinic supplies online, track orders, and manage your clinic's needs with ease.
                 </p>
-                <span className={styles.availableNow} onClick={() => window.location.href = 'https://user.clinickart.co'} style={{ cursor: 'pointer' }}>EXPLORE</span>
+                <span className={styles.availableNow} onClick={() => window.open('https://user.clinickart.co', '_blank', 'noopener,noreferrer')} style={{ cursor: 'pointer' }}>EXPLORE</span>
               </div>
 
               {/* Card 2: Vendor Web App */}
@@ -65,7 +65,7 @@ export default function Subservice() {
                 <p className={styles.cardDescription}>
                   Suppliers can manage inventory, receive orders, and connect with more clinics digitally.
                 </p>
-                <span className={styles.availableNow} onClick={() => window.location.href = 'https://vendor.clinickart.co'} style={{ cursor: 'pointer' }}>EXPLORE</span>
+                <span className={styles.availableNow} onClick={() => window.open('https://vendor.clinickart.co', '_blank', 'noopener,noreferrer')} style={{ cursor: 'pointer' }}>EXPLORE</span>
               </div>
 
               {/* Card 3: User App */}

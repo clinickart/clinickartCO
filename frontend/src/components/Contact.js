@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import '../components/Contact.css';
 import Footer from './Footer';
+import { contactAPI } from '../services/api';
 
 const Contact = () => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
-        subject: '',
+        phone: '',
         reason: '',
         message: ''
     });
+    const [loading, setLoading] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState(null);
 
     const handleChange = (e) => {
         setFormData({
@@ -18,17 +21,38 @@ const Contact = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Form submitted:', formData);
-        alert('Thank you for your message! We will get back to you soon.');
-        setFormData({
-            name: '',
-            email: '',
-            subject: '',
-            reason: '',
-            message: ''
-        });
+        setLoading(true);
+        setSubmitStatus(null);
+
+        try {
+            const response = await contactAPI.submit(formData);
+            console.log('Form submitted successfully:', response);
+            
+            setSubmitStatus({
+                type: 'success',
+                message: 'Thank you for your message! We have received your inquiry and will get back to you soon. Please check your email for confirmation.'
+            });
+            
+            // Reset form
+            setFormData({
+                name: '',
+                email: '',
+                phone: '',
+                reason: '',
+                message: ''
+            });
+        } catch (error) {
+            console.error('Form submission error:', error);
+            
+            setSubmitStatus({
+                type: 'error',
+                message: 'Sorry, there was an error submitting your message. Please try again or contact us directly.'
+            });
+        } finally {
+            setLoading(false);
+        }
     };
 
     // Background image style
@@ -139,12 +163,15 @@ const Contact = () => {
                     <div className="contact-form-section">
                         <div className="form-header">
                             <h2>Send Us a Message</h2>
-                            <p>
-                                Have a quick question? Check out our <span className="faq-link">FAQ page</span> first!
-                            </p>
                         </div>
 
                         <form onSubmit={handleSubmit} className="contact-form">
+                            {submitStatus && (
+                                <div className={`status-message ${submitStatus.type}`}>
+                                    {submitStatus.message}
+                                </div>
+                            )}
+                            
                             <div className="form-row">
                                 <div className="form-group">
                                     <label htmlFor="name">Enter your Name*</label>
@@ -221,8 +248,8 @@ const Contact = () => {
                                 ></textarea>
                             </div>
 
-                            <button type="submit" className="submit-button">
-                                Send Message
+                            <button type="submit" className="submit-button" disabled={loading}>
+                                {loading ? 'Sending...' : 'Send Message'}
                             </button>
                         </form>
                     </div>

@@ -19,11 +19,11 @@ const contactSchema = new mongoose.Schema({
         type: String,
         trim: true
     },
-    subject: {
+    reason: {
         type: String,
-        required: [true, 'Subject is required'],
         trim: true,
-        maxlength: [200, 'Subject cannot exceed 200 characters']
+        enum: ['order-inquiry', 'product-info', 'technical-support', 'partnership', 'feedback', 'other', ''],
+        default: ''
     },
     message: {
         type: String,
